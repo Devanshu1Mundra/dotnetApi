@@ -6,10 +6,10 @@ pipeline {
             steps {
                 script {
                     // Define the Dockerfile path relative to the Jenkins workspace
-                    def dockerfilePath = './Dockerfile'
+                    def dockerfilePath = './WheatherApi/Dockerfile'
 
                     // Build the Docker image using the Dockerfile
-                    docker.build('your-image-name', '-f ' + dockerfilePath + ' .')
+                    docker.build('dockerimage', '-f ' + dockerfilePath + ' .')
                 }
             }
         }
