@@ -11,7 +11,7 @@ pipeline {
             steps {
                 // Build the Docker image
                 script {
-                    sh 'docker build -t test-image:image1 .'
+                    sudo docker.build('test-image:image1')
                 }
             }
         }
@@ -19,9 +19,11 @@ pipeline {
             steps {
                 // Push the Docker image to a registry
                 script {
-                    sh 'docker login -u your-dockerhub-username -p your-dockerhub-password'
-                    sh 'docker tag test-image:image1 devanshumundra/dockerimage:test'
-                    sh 'docker push devanshumundra/dockerimage:test'
+                    docker.withRegistry('
+https://hub.docker.com/repository/docker/devanshumundra/dockerimage/general'
+, 'dockerpassword1') {
+                        docker.image('test-image:image1').push()
+                    }
                 }
             }
         }
