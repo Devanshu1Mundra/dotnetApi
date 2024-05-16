@@ -1,15 +1,30 @@
 pipeline {
     agent any
-
+ 
     stages {
+        stage('Checkout') {
+            steps {
+                // Checkout the code repository
+                git 'https://github.com/Devanshu1Mundra/dotnetApi.git'
+            }
+        }
+ 
         stage('Build Docker Image') {
             steps {
+                // Build the Docker image
                 script {
-                    // Define the Dockerfile path relative to the Jenkins workspace
-                    def dockerfilePath = './WheatherApi/Dockerfile'
-
-                    // Build the Docker image using the Dockerfile
-                    docker.build('dockerimage', '-f ' + dockerfilePath + ' .')
+                    docker.build('test-image:image1')
+                }
+            }
+        }
+ 
+        stage('Push Docker Image') {
+            steps {
+                // Push the Docker image to a registry
+                script {
+                    docker.withRegistry('https://your-docker-registry.com', 'your-registry-credentials-id') {
+                        docker.image('test-image:image1').push()
+                    }
                 }
             }
         }
