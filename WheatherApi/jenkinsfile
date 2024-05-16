@@ -19,9 +19,7 @@ pipeline {
             steps {
                 // Push the Docker image to a registry
                 script {
-                    docker.withRegistry('
-https://hub.docker.com/repository/docker/devanshumundra/dockerimage/general'
-, 'dockerpassword1') {
+                    docker.withRegistry('https://hub.docker.com/repository/docker/devanshumundra/dockerimage/general', 'dockerpassword1') {
                         docker.image('test-image:image1').push()
                     }
                 }
