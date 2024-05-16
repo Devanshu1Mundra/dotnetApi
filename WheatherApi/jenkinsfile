@@ -4,8 +4,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout the code repository
-                git '
-https://github.com/Devanshu1Mundra/dotnetApi.git'
+                git 'https://github.com/Devanshu1Mundra/dotnetApi.git'
             }
         }
         stage('Build Docker Image') {
