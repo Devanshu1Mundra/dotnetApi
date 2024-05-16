@@ -13,7 +13,7 @@ pipeline {
             steps {
                 // Build the Docker image
                 script {
-                    docker.build('test-image:image1')
+                    sudo docker.build('test-image:image1')
                 }
             }
         }
