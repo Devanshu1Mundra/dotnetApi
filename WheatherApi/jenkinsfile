@@ -1,0 +1,17 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    // Define the Dockerfile path relative to the Jenkins workspace
+                    def dockerfilePath = './Dockerfile'
+
+                    // Build the Docker image using the Dockerfile
+                    docker.build('your-image-name', '-f ' + dockerfilePath + ' .')
+                }
+            }
+        }
+    }
+}
