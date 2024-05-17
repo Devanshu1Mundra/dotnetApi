@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script {
                     // Build the Docker image using the Dockerfile
-                    docker.build('api-image', '.')
+                    docker.build('api-image', './WheatherApi/Dockerfile')
                 }
             }
         }
