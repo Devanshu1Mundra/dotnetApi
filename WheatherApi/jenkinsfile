@@ -1,27 +1,12 @@
 pipeline {
     agent any
+
     stages {
-        stage('Checkout') {
-            steps {
-                // Checkout the code repository
-                git 'https://github.com/Devanshu1Mundra/dotnetApi.git'
-            }
-        }
         stage('Build Docker Image') {
             steps {
-                // Build the Docker image
                 script {
-                    sudo docker.build('test-image:image1')
-                }
-            }
-        }
-        stage('Push Docker Image') {
-            steps {
-                // Push the Docker image to a registry
-                script {
-                    docker.withRegistry('https://hub.docker.com/repository/docker/devanshumundra/dockerimage/general', 'dockerpassword1') {
-                        docker.image('test-image:image1').push()
-                    }
+                    // Build the Docker image using the Dockerfile
+                    docker.build('api-image', '.')
                 }
             }
         }
